@@ -9,6 +9,17 @@ var NumberInputText = React.createClass({
   }
 });
 
+var VoicemailInputText = React.createClass({
+  render: function() {
+    return (
+      <div className="input-group input-group-sm">
+        <input type="text" className="form-control" placeholder="Voicemail here"
+            value={this.props.currentVoicemail} onChange={this.props.handleOnChange}/>
+      </div>
+    );
+  }
+});
+
 var CountrySelectBox = React.createClass({
   render: function() {
     var self = this;
@@ -62,6 +73,17 @@ var CallButton = React.createClass({
     );
   }
 });
+
+var VoiceMailButton = React.createClass({
+  render: function() {
+    return (
+      <button className={'btn btn-circle btn-success' + (this.props.onPhone ? 'btn-danger': 'btn-success')}
+        onClick={this.props.handleOnClick}>
+      <i className="fas fa-voicemail"></i>
+      </button>
+    )
+  }
+})
 
 
 var MuteButton = React.createClass({
@@ -189,6 +211,12 @@ var DialerApp = React.createClass({
     });
   },
 
+  handleChangeVoicemail(e) {
+    this.setState({
+      currentVoicemail: e.target.value,
+    });
+  },
+
   // Handle muting
   handleToggleMute() {
     var muted = !this.state.muted;
@@ -215,6 +243,23 @@ var DialerApp = React.createClass({
     }
   },
 
+  handleDropVoicemail() {
+    const data = {voicemail: this.state.currentVoicemail}
+    console.log(this.state.currentVoicemail);
+    fetch('http://localhost:3000/dropVoicemail', {
+    method: 'POST', // or 'PUT'
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    // mode: 'no-cors',
+    // cache: 'no-cache',
+    // credentials: 'same-origin',
+    body: JSON.stringify({
+      'voicemail': this.state.currentVoicemail
+    })
+})
+  },
+
   render: function() {
     var self = this;
 
@@ -227,11 +272,15 @@ var DialerApp = React.createClass({
 
           <NumberInputText currentNumber={this.state.currentNumber} handleOnChange={this.handleChangeNumber} />
 
+          <VoicemailInputText currentVoicemail={this.state.currentVoicemail} handleOnChange={this.handleChangeVoicemail}/>
+
         </div>
 
         <div className="controls">
 
           <CallButton handleOnClick={this.handleToggleCall} disabled={!this.state.isValidNumber} onPhone={this.state.onPhone}/>
+
+          <VoiceMailButton handleOnClick={this.handleDropVoicemail}/>
 
           { this.state.onPhone ? <MuteButton handleOnClick={this.handleToggleMute} muted={this.state.muted} /> : null }
 
