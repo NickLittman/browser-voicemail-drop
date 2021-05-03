@@ -2,7 +2,7 @@
   <img src="https://static0.twilio.com/marketing/bundles/marketing/img/logos/wordmark-red.svg" alt="Twilio" width="250" />
 </a>
 
-# Browser Dialer - React
+# Browser Voicemail Drop
 [![Build Status](https://travis-ci.org/TwilioDevEd/browser-dialer-react.svg?branch=master)](https://travis-ci.org/TwilioDevEd/browser-dialer-react)
 
 Learn to implement a browser dialer application using the Twilio.js library and React.
