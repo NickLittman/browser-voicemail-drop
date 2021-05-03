@@ -2,10 +2,12 @@
   <img src="https://static0.twilio.com/marketing/bundles/marketing/img/logos/wordmark-red.svg" alt="Twilio" width="250" />
 </a>
 
+# TODO: update this readme.md
+
 # Browser Voicemail Drop
 [![Build Status](https://travis-ci.org/TwilioDevEd/browser-dialer-react.svg?branch=master)](https://travis-ci.org/TwilioDevEd/browser-dialer-react)
 
-Learn to implement a browser dialer application using the Twilio.js library and React.
+Learn to implement a browser dialer application using the Twilio.js library and React. This implementation builds off of the browser dialer and extends it to allow voicemail drops.
 
 [Read the full tutorial here!](https://www.twilio.com/docs/tutorials/walkthrough/browser-dialer/node/react)
 
